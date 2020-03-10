@@ -384,7 +384,6 @@ class fieldMultilingual_TextBox extends FieldTextBox
         $langs     = FLang::getLangs();
 
         $wrapper->setAttribute('class', $wrapper->getAttribute('class') . ' field-multilingual');
-        $container = new XMLElement('div', null, array('class' => 'container'));
 
         /*------------------------------------------------------------------------------------------------*/
         /*  Label  */
@@ -446,19 +445,29 @@ class fieldMultilingual_TextBox extends FieldTextBox
             }
         }
 
-        $container->appendChild($label);
+
+        /*------------------------------------------------------------------------------------------------*/
+        /*  Errors  */
+        /*------------------------------------------------------------------------------------------------*/
+
+        if ($flagWithError != null) {
+            $wrapper->appendChild(Widget::Error($label, $flagWithError));
+        }
+        else {
+            $wrapper->appendChild($label);
+        }
 
         /*------------------------------------------------------------------------------------------------*/
         /*  Tabs  */
         /*------------------------------------------------------------------------------------------------*/
 
-        $ul = new XMLElement('ul', null, array('class' => 'tabs'));
+        $ul = new XMLElement('ul', null, array('class' => 'tabs multilingualtabs'));
         foreach ($langs as $lc) {
             $li = new XMLElement('li', $lc, array('class' => $lc));
             $lc === $main_lang ? $ul->prependChild($li) : $ul->appendChild($li);
         }
 
-        $container->appendChild($ul);
+        $wrapper->appendChild($ul);
 
         /*------------------------------------------------------------------------------------------------*/
         /*  Panels  */
@@ -469,6 +478,9 @@ class fieldMultilingual_TextBox extends FieldTextBox
                 'class'          => 'tab-panel tab-' . $lc,
                 'data-lang_code' => $lc
             ));
+
+            $container = new XMLElement('div');
+            $container->setAttribute('class', 'container');
 
             $element_name = $this->get('element_name');
 
@@ -518,21 +530,12 @@ class fieldMultilingual_TextBox extends FieldTextBox
                 )
             );
 
-            $div->appendChild($input);
+            $container->appendChild($input);
+            $div->appendChild($container);
 
-            $container->appendChild($div);
+            $wrapper->appendChild($div);
         }
 
-        /*------------------------------------------------------------------------------------------------*/
-        /*  Errors  */
-        /*------------------------------------------------------------------------------------------------*/
-
-        if ($flagWithError != null) {
-            $wrapper->appendChild(Widget::Error($container, $flagWithError));
-        }
-        else {
-            $wrapper->appendChild($container);
-        }
     }
 
 
