@@ -154,37 +154,27 @@ class Extension_Multilingual_Field extends Extension
                     ->change(['formatter', 'unique_handle', 'use_def_lang_vals'], [
                         'text_formatter' => [
                             'type' => 'varchar(255)',
-                            'charset' => 'utf8',
-                            'collate' => 'utf8_unicode_ci',
                             'null' => true,
                         ],
                         'text_handle' => [
                             'type' => 'enum',
                             'values' => ['yes', 'no'],
-                            'charset' => 'utf8',
-                            'collate' => 'utf8_unicode_ci',
                             'default' => 'yes',
                         ],
                         'def_ref_lang' => [
                             'type' => 'enum',
                             'values' => ['yes', 'no'],
-                            'charset' => 'utf8',
-                            'collate' => 'utf8_unicode_ci',
                             'default' => 'no',
                         ],
                     ])
                     ->modify([
                         'text_validator' => [
                             'type' => 'varchar(255)',
-                            'charset' => 'utf8',
-                            'collate' => 'utf8_unicode_ci',
                             'null' => true,
                         ],
                         'text_size' => [
                             'type' => 'enum',
                             'values' => ['single', 'small', 'medium', 'large', 'huge'],
-                            'charset' => 'utf8',
-                            'collate' => 'utf8_unicode_ci',
                             'default' => 'medium',
                         ],
                     ])
@@ -192,8 +182,6 @@ class Extension_Multilingual_Field extends Extension
                         'text_cdata' => [
                             'type' => 'enum',
                             'values' => ['yes', 'no'],
-                            'charset' => 'utf8',
-                            'collate' => 'utf8_unicode_ci',
                             'default' => 'no',
                         ],
                     ])
@@ -216,14 +204,10 @@ class Extension_Multilingual_Field extends Extension
                         ->modify([
                             'handle' => [
                                 'type' => 'varchar(255)',
-                                'charset' => 'utf8',
-                                'collate' => 'utf8_unicode_ci',
                                 'null' => true,
                             ],
                             'value' => [
                                 'type' => 'text',
-                                'charset' => 'utf8',
-                                'collate' => 'utf8_unicode_ci',
                                 'null' => true,
                             ],
                         ])
@@ -237,22 +221,16 @@ class Extension_Multilingual_Field extends Extension
                                 ->change("value_format-$lc", [
                                     "value_formatted-$lc" => [
                                         'type' => 'text',
-                                        'charset' => 'utf8',
-                                        'collate' => 'utf8_unicode_ci',
                                         'null' => true,
                                     ],
                                 ])
                                 ->modify([
                                     "handle-$lc" => [
                                         'type' => 'varchar(255)',
-                                        'charset' => 'utf8',
-                                        'collate' => 'utf8_unicode_ci',
                                         'null' => true,
                                     ],
                                     "value-$lc" => [
                                         'type' => 'text',
-                                        'charset' => 'utf8',
-                                        'collate' => 'utf8_unicode_ci',
                                         'null' => true,
                                     ],
                                     "word_count-$lc" => [
@@ -279,16 +257,12 @@ class Extension_Multilingual_Field extends Extension
                     'default_main_lang' => [
                         'type' => 'enum',
                         'values' => ['yes', 'no'],
-                        'charset' => 'utf8',
-                        'collate' => 'utf8_unicode_ci',
                         'default' => 'no',
                     ],
                 ])
                 ->add([
                     'required_languages' => [
                         'type' => 'varchar(255)',
-                        'charset' => 'utf8',
-                        'collate' => 'utf8_unicode_ci',
                         'null' => true,
                     ],
                 ])
