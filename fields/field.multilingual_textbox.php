@@ -51,7 +51,10 @@ class fieldMultilingual_TextBox extends FieldTextBox
     {
         $keys = array();
         foreach (FLang::getLangs() as $lc) {
-            $keys["handle-$lc"] = 'key';
+            $keys["handle-$lc"] = [
+                'type' => 'key',
+                'cols' => ['handle' => 333],
+            ];
             $keys["value-$lc"] = 'fulltext';
             $keys["value_formatted-$lc"] = 'fulltext';
         }
@@ -91,7 +94,10 @@ class fieldMultilingual_TextBox extends FieldTextBox
             ->keys(array_merge([
                 'id' => 'primary',
                 'entry_id' => 'unique',
-                'handle' => 'key',
+                'handle' => [
+                    'type' => 'key',
+                    'cols' => ['handle' => 255],
+                ],
                 'value' => 'fulltext',
                 'value_formatted' => 'fulltext',
             ], self::generateTableKeys()))
